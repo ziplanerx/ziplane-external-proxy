@@ -20,5 +20,5 @@ The following guides illustrate how to use some features concretely:
 
 
 # Docker Commands
-docker build -t tkp96/ziplanerx-external-proxy .
+docker build -t ziplanedev/ziplanerx-external-proxy .
 docker run -d -p 8080:8082 --name ziplanerx-external-proxy tkp96/ziplanerx-external-proxy

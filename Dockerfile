@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM --platform=linux/amd64/v2 openjdk:17
 WORKDIR /ziplanerx-external-proxy
 COPY ./target/*.jar /ziplanerx-external-proxy
 EXPOSE 8080
