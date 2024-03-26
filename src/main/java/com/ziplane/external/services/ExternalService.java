@@ -88,7 +88,7 @@ public class ExternalService {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("https://api.nhs.uk/comments/ratings?odsCode=FRL51")
+                .url("https://api.nhs.uk/comments/ratings?odsCode=" + odsCode)
                 .method("GET", null)
                 .addHeader("subscription-key", "f2f75684ce194528b48bcdd829949793")
                 .build();
