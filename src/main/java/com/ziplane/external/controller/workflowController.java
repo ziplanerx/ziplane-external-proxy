@@ -1,6 +1,7 @@
 package com.ziplane.external.controller;
 
 
+import com.ziplane.external.dto.NhsReviewResponse;
 import com.ziplane.external.dto.ReviewResponse;
 import com.ziplane.external.dto.VATResponse;
 import com.ziplane.external.services.ExternalService;
@@ -14,7 +15,7 @@ import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"*", "http://localhost:4200"})
 public class workflowController {
     @Autowired
     private ExternalService externalService;
@@ -24,20 +25,22 @@ public class workflowController {
         VATResponse response = externalService.verifyVAT(vatNumber);
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("token/{code}")
     public ResponseEntity<String> token(@PathVariable String code) throws IOException {
-        String response= externalService.getToken(code);
+        String response = externalService.getToken(code);
         return ResponseEntity.ok(response);
     }
+
     @GetMapping("google/reviews")
     public ResponseEntity<ReviewResponse> getGoogleReview() {
-        ReviewResponse reviewResponse=externalService.getGoogleReviews();
-       return ResponseEntity.ok(reviewResponse);
+        ReviewResponse reviewResponse = externalService.getGoogleReviews();
+        return ResponseEntity.ok(reviewResponse);
     }
 
     @GetMapping("nhs/reviews/{odsCode}")
     public ResponseEntity<BigDecimal> getNhsReview(@PathVariable String odsCode) throws IOException {
-        BigDecimal reviewResponse=externalService.getNhsReview(odsCode);
+        BigDecimal reviewResponse = externalService.getNhsReview(odsCode);
         return ResponseEntity.ok(reviewResponse);
     }
 

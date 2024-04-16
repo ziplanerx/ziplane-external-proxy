@@ -18,3 +18,7 @@ The following guides illustrate how to use some features concretely:
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 * [Accessing data with MySQL](https://spring.io/guides/gs/accessing-data-mysql/)
 
+
+# Docker Commands
+docker build -t ziplanedev/ziplanerx-external-proxy .
+docker run -d -p 8080:8082 --name ziplanerx-external-proxy tkp96/ziplanerx-external-proxy

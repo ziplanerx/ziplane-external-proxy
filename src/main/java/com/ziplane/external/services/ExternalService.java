@@ -65,15 +65,15 @@ public class ExternalService {
 
     public ReviewResponse getGoogleReviews() {
         ReviewResponse reviewResponse = new ReviewResponse();
-        String url = "https://serpapi.com/search?engine=google_maps&q=mango+pharmacy+Edgware&ll=@51.61157608,-0.2800325751,14z&hl=en&type=search&api_key=650c8a149183d4b2f27f8af73c0c7a8db41b4de1d6c568ad63ab73356b57ab9d";
+        String url = "https://serpapi.com/search?engine=google_maps&q=mango+pharmacy+Edgware&ll=@51.61157608,-0.2800325751,14z&hl=en&type=search&api_key=007519ddf00c7b81bfe9c3e914ac0c35300ad3c209ef7d4e02ae2202278a0d1b";
         GoogleResponse response = restTemplate.getForObject(url, GoogleResponse.class);
         if (response.getPlace_results() != null) {
-            reviewResponse = restTemplate.getForObject(response.getPlace_results().getPlace_id_search() + "&api_key=650c8a149183d4b2f27f8af73c0c7a8db41b4de1d6c568ad63ab73356b57ab9d", ReviewResponse.class);
+            reviewResponse = restTemplate.getForObject(response.getPlace_results().getPlace_id_search() + "&api_key=007519ddf00c7b81bfe9c3e914ac0c35300ad3c209ef7d4e02ae2202278a0d1b", ReviewResponse.class);
 
         } else {
             Optional<LocalResults> localResults = response.local_results.stream().filter(a -> a.getAddress().contains("Edgware")).findFirst();
             if (localResults.isPresent()) {
-                reviewResponse = restTemplate.getForObject(localResults.get().getPlace_id_search() + "&api_key=650c8a149183d4b2f27f8af73c0c7a8db41b4de1d6c568ad63ab73356b57ab9d", ReviewResponse.class);
+                reviewResponse = restTemplate.getForObject(localResults.get().getPlace_id_search() + "&api_key=007519ddf00c7b81bfe9c3e914ac0c35300ad3c209ef7d4e02ae2202278a0d1b", ReviewResponse.class);
 
             }
         }
@@ -88,7 +88,7 @@ public class ExternalService {
         MediaType mediaType = MediaType.parse("text/plain");
         RequestBody body = RequestBody.create(mediaType, "");
         Request request = new Request.Builder()
-                .url("https://api.nhs.uk/comments/ratings?odsCode=FRL51")
+                .url("https://api.nhs.uk/comments/ratings?odsCode=" + odsCode)
                 .method("GET", null)
                 .addHeader("subscription-key", "f2f75684ce194528b48bcdd829949793")
                 .build();
